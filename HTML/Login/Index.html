@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="/Login/style.css">
+</head>
+<body>
+
+  <div class="wrapper">
+    
+      <div class="form__logo">
+        <img src="/Login/dzen.svg" alt="logo">
+        <h2>Вход</h2>
+      </div>
+      <form action="#" id="my-form">
+
+        <div class="form__group">
+          <label class="form__label" for="email">Email</label>
+          <input class="form__input" type="email" id="email" required>
+          <label class="form__no-valid">Неверно заполнен email!</label>
+        </div>
+
+        <div class="form__group">
+          <label class="form__label" for="password">Пароль</label>
+          <input class="form__input" type="password" id="password"  >
+          <label class="form__no-valid">Заполните пароль!</label>
+        </div>
+
+        <div class="form__group">
+          <label class="form__remember"><input class="form__checkbox" type="checkbox" value="" id="remember" >
+					 Запомнить меня</label> 
+        </div>
+        <div class="form__footer">
+          <button class="form__button" type="submit" >войти</button>
+        </div>
+        
+
+      </form>
+ 
+  </div>
+
+
+  <script src="/Login/script.js"></script>
+</body>
+</html>

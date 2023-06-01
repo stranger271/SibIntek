@@ -1,0 +1,35 @@
+1---------------------
+Получите количество заказов по каждому клиенту
+select c.Name, count(o.OrderID) as OrdersCount
+from Customers as c left outer join orders as o on c.CustomerID = o.CustomerID 
+group by c.CustomerID,c.Name
+
+или 
+
+select c.Name, ( select count(o.OrderID) from orders as o where c.CustomerID = o.CustomerID )  as OrdersCount
+from Customers as c
+
+2---------------------
+Получите количество заказов в каждом квартале прошлого года
+declare @pastYear  nvarchar(4)  = (convert(nvarchar(4),datepart(year,DATEADD(year, -1, getdate()))));
+	
+SELECT  @pastYear as 'Год', DATEPART(quarter,o.Date) as 'Квартал', Sum(o.Count) as 'Кол-во заказов'
+FROM Orders as o
+WHERE o.Date between '01.01.' + @pastYear and '31.12.' + @pastYear
+group by DATEPART(quarter,o.Date)
+
+
+3---------------------
+Получите города, из которых не поступали заказы за последние два месяца
+select c.City
+from Customers as c
+where c.CustomerID not in(
+	select distinct(o.CustomerID)
+	from  orders as o  
+	where o.Date > DATEADD(month, -2, getdate())
+	)
+
+4---------------------
+Обозначьте поля в таблицах, которые будут являться первичным и внешними ключами
+CustomerID первичный ключ для таблицы Customers и внешний ключ для Orders
+OrderID первичный ключ для таблицы Orders
